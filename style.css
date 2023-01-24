@@ -43,8 +43,10 @@ body {
     font-size: 23px;
 }
 
-canvas {
+#canvas {
     width: 600px;
     height: 400px;
+    width: 100%;
+    border: 1px solid black;
     background-color: black;
 }
