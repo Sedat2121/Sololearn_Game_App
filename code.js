@@ -14,39 +14,19 @@ window.onload = function() {
     var y = 100;
     
     function draw() {
+        // The clearRect() function clears the specified area of the canvas. 
+        // that cleared the entire canvas.
+        context.clearRect(0, 0, 600, 400);
+
         context.beginPath();
-        context.rect(x, y, 100, 100);
+        context.arc(300, 200, size, 0, 2*Math.PI);
         context.fillStyle="red";
         context.fill();
 
-        x += 10;
-        if (x >= 600) {
-            x = -100;
+        size += step;
+        if (size >= 150 || size <= 50) {
+            step *= -1;
         }
     }
-    setInterval(draw, 50);
+    setInterval(draw, 100);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// window.onload = function () {
-//     let btn = document.getElementById("jump");
-//     let count = 0;
-
-//     btn.onclick = function () {
-//         count += 1;
-//     }
-// }
-
-
-
