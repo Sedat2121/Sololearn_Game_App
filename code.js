@@ -13,20 +13,24 @@ window.onload = function() {
     var x = 0;
     var y = 100;
     
+    var t;
     function draw() {
-        // The clearRect() function clears the specified area of the canvas. 
-        // that cleared the entire canvas.
+        var timePassed = (Date.now() - t) / 1000;
+        t = Date.now();
+        var fps = Math.round(1 / timePassed);
         context.clearRect(0, 0, 600, 400);
-
+        context.font = '25px Arial';
+        context.fillStyle = 'black';
+        context.fillText("FPS: " + fps, 20, 30);
         context.beginPath();
-        context.arc(300, 200, size, 0, 2*Math.PI);
+        context.rect(x, y, 100, 100);
         context.fillStyle="red";
         context.fill();
-
-        size += step;
-        if (size >= 150 || size <= 50) {
-            step *= -1;
+        x += 10;
+        if (x >= 600) {
+            x = -100;
         }
+        window.requestAnimationFrame(draw);
     }
-    setInterval(draw, 100);
+    draw();
 }
