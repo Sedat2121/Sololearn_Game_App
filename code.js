@@ -50,16 +50,24 @@ window.onload = function() {
         context.fill();
 
         if(dir == 1) { 
-            x += (speed * timePassed);
+            if(x+100 < 600) {
+                x += (speed * timePassed);
+            }
         }
         else if(dir == 2) { 
-            x -= (speed * timePassed);
+            if(x > 0) {
+                x -= (speed * timePassed);
+            }
         }
         else if(dir == 3) { 
-            y += (speed * timePassed);
+            if(y+100 < 400) {
+                y += (speed * timePassed);
+            }
         }
         else if(dir == 4) { 
-            y -= (speed * timePassed);
+            if(y > 0) {
+                y -= (speed * timePassed);
+            }
         } 
         window.requestAnimationFrame(draw);
     }
