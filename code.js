@@ -1,12 +1,3 @@
-
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");
-var x = 300;
-var y = 350;
-context.arc(x, y, 50, 0, 2 * Math.PI);
-context.fillStyle = "red";
-context.fill();
-
 window.onload = function() {
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
@@ -14,7 +5,34 @@ window.onload = function() {
     var y = 100;
     
     var t = Date.now();
-    let speed = 100;
+    let speed = 300;
+    let dir = 0;
+    
+    let up = document.getElementById('up');
+    let down = document.getElementById('down');
+    let left = document.getElementById('left');
+    let right = document.getElementById('right');
+
+    up.onmousedown = function() { dir = 4;}
+    down.onmousedown = function() { dir = 3;}
+    left.onmousedown = function() { dir = 2;}
+    right.onmousedown = function() { dir = 1;}
+
+    up.ontouchstart = function() { dir = 4;}
+    down.ontouchstart = function() { dir = 3;}
+    left.ontouchstart = function() { dir = 2;}
+    right.ontouchstart = function() { dir = 1;}
+
+    up.onmouseup = function() { dir = 0;}
+    down.onmouseup = function() { dir = 0;}
+    left.onmouseup = function() { dir = 0;}
+    right.onmouseup = function() { dir = 0;}
+
+    up.ontouchend = function() { dir = 0;}
+    down.ontouchend = function() { dir = 0;}
+    left.ontouchend = function() { dir = 0;}
+    right.ontouchend = function() { dir = 0;}
+
     function draw() {
         var timePassed = (Date.now() - t) / 1000;
         t = Date.now();
@@ -31,11 +49,18 @@ window.onload = function() {
         context.fillStyle="red";
         context.fill();
 
-        x += (speed * timePassed); 
-
-        if (x >= 600) {
-            x = -100;
+        if(dir == 1) { 
+            x += (speed * timePassed);
         }
+        else if(dir == 2) { 
+            x -= (speed * timePassed);
+        }
+        else if(dir == 3) { 
+            y += (speed * timePassed);
+        }
+        else if(dir == 4) { 
+            y -= (speed * timePassed);
+        } 
         window.requestAnimationFrame(draw);
     }
     draw();
