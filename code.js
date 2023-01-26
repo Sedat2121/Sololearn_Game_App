@@ -1,13 +1,16 @@
 window.onload = function() {
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    var x = 0;
-    var y = 100;
+    var x = 250;
+    var y = 150;
+    var coinx = Math.random() * (600-50);
+	var coiny = Math.random() * (400-50);
     
     var t = Date.now();
     let speed = 300;
     let dir = 0;
-    
+    let score = 0;
+
     let up = document.getElementById('up');
     let down = document.getElementById('down');
     let left = document.getElementById('left');
@@ -36,18 +39,22 @@ window.onload = function() {
     function draw() {
         var timePassed = (Date.now() - t) / 1000;
         t = Date.now();
-        var fps = Math.round(1 / timePassed);
 
         context.clearRect(0, 0, 600, 400);
         
         context.font = '25px Arial';
         context.fillStyle = 'black';
-        context.fillText("FPS: " + fps, 20, 30);
+        context.fillText("Score: " + score, 20, 30);
 
         context.beginPath();
         context.rect(x, y, 100, 100);
         context.fillStyle="red";
         context.fill();
+
+        context.beginPath();
+        context.rect(coinx, coiny, 50, 50);
+        context.fillStyle="#e3c228";
+        context.fill(); 
 
         if(dir == 1) { 
             if(x+100 < 600) {
@@ -68,7 +75,14 @@ window.onload = function() {
             if(y > 0) {
                 y -= (speed * timePassed);
             }
-        } 
+        }
+
+        if (coinx <= x+100 && x <= coinx+50 && coiny <= y+100 && y <= coiny+50) {
+            score++;
+            coinx = Math.random() * (600-50);
+            coiny = Math.random() * (400-50);
+        }
+
         window.requestAnimationFrame(draw);
     }
     draw();
