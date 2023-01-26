@@ -16,19 +16,12 @@ body {
 #header h1 {
     font-size: 40px;
     text-align: center;
-    color: #4c6ebb;
+    color: #0d4de3;
 }
 
 #header p {
     font-size: 20px;
     text-align: center;
-}
-
-.can {
-    width: 90%;
-    height: auto;
-    display: grid;
-    
 }
 
 #jump {
