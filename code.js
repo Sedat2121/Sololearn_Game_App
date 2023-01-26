@@ -3,8 +3,8 @@ window.onload = function() {
     var context = canvas.getContext("2d");
     var x = 250;
     var y = 150;
-    var coinx = Math.random() * (600-50);
-	var coiny = Math.random() * (400-50);
+    var coinx = Math.random() * (600);
+	var coiny = Math.random() * (400);
     
     var t = Date.now();
     let speed = 300;
@@ -41,18 +41,18 @@ window.onload = function() {
         t = Date.now();
 
         context.clearRect(0, 0, 600, 400);
-        
-        context.font = '25px Arial';
-        context.fillStyle = 'black';
+        // Score shown
+        context.font = '16px Arial';
+        context.fillStyle = 'blue';
         context.fillText("Score: " + score, 20, 30);
-
+        // Red box
         context.beginPath();
-        context.rect(x, y, 100, 100);
+        context.rect(x, y, 30, 30);
         context.fillStyle="red";
         context.fill();
-
+        // Yellow box
         context.beginPath();
-        context.rect(coinx, coiny, 50, 50);
+        context.rect(coinx, coiny, 20, 20);
         context.fillStyle="#e3c228";
         context.fill(); 
 
@@ -79,8 +79,8 @@ window.onload = function() {
 
         if (coinx <= x+100 && x <= coinx+50 && coiny <= y+100 && y <= coiny+50) {
             score++;
-            coinx = Math.random() * (600-50);
-            coiny = Math.random() * (400-50);
+            coinx = Math.random() * (600);
+            coiny = Math.random() * (400);
         }
 
         window.requestAnimationFrame(draw);
